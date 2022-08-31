@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "128482580166",
+    "project_id": "two-login-signup-provider",
+    "storage_bucket": "two-login-signup-provider.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128482580166:android:d7853422182b522f6e69c7",
+        "android_client_info": {
+          "package_name": "com.example.two_login_signup_provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128482580166-gc3691ib29ck4tlg2l9gn6qlr4c48o6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg__4IygmLj9IwpXzu3HNMNOUW6jmU2N4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128482580166-gc3691ib29ck4tlg2l9gn6qlr4c48o6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
