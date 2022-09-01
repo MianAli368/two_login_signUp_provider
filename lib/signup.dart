@@ -222,12 +222,110 @@ void registerUser(
   ProviderState providerState =
       Provider.of<ProviderState>(context, listen: false);
 
-  try {
-    if (await providerState.registration(email, password, confirmPassword)) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => const LOGIN())));
+  if (password == confirmPassword) {
+    try {
+      if (await providerState.registration(email, password, confirmPassword)) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const LOGIN()));
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "weak-password") {
+        print('Entered Password is too weak');
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          backgroundColor: Colors.black,
+          content: Text(
+            'Entered Password is too weak.',
+            style: TextStyle(fontSize: 18, color: Colors.redAccent),
+          ),
+        ));
+      } else if (e.code == "email-already-in-use") {
+        print("Account already exists");
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          backgroundColor: Colors.black,
+          content: Text(
+            'Account already exists.',
+            style: TextStyle(fontSize: 18, color: Colors.redAccent),
+          ),
+        ));
+      }
     }
-  } catch (e) {
-    print('Error Sign Up : $e');
+  } else {
+    print("Password and Confirm doesn't matched");
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      backgroundColor: Colors.black,
+      content: Text(
+        "Password and Confirm doesn't matched.",
+        style: TextStyle(fontSize: 18, color: Colors.redAccent),
+      ),
+    ));
   }
+
+  // try {
+  //   if (await providerState.registration(email, password, confirmPassword)) {
+  //     Navigator.push(
+  //         context, MaterialPageRoute(builder: ((context) => const LOGIN())));
+  //   }
+  // }
+
+  // on FirebaseAuthException catch (e) {
+  //   if (e.code == "weak-password") {
+  //     print('Entered Password is too weak');
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       backgroundColor: Colors.black,
+  //       content: Text(
+  //         'Entered Password is too weak.',
+  //         style: TextStyle(fontSize: 18, color: Colors.redAccent),
+  //       ),
+  //     ));
+  //   } else if (e.code == "email-already-in-use") {
+  //     print("Account already exists");
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       backgroundColor: Colors.black,
+  //       content: Text(
+  //         'Account already exists.',
+  //         style: TextStyle(fontSize: 18, color: Colors.redAccent),
+  //       ),
+  //     ));
+  //   }
+  //   }
+
+  // else {
+  //     print("Password and Confirm doesn't matched");
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       backgroundColor: Colors.black,
+  //       content: Text(
+  //         "Password and Confirm doesn't matched.",
+  //         style: TextStyle(fontSize: 18, color: Colors.redAccent),
+  //       ),
+  //     ));
+  //   }
+  // }
+
+  // on FirebaseAuthException catch (e) {
+  //   if (e.code == "weak-password") {
+  //     print('Entered Password is too weak');
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       backgroundColor: Colors.black,
+  //       content: Text(
+  //         'Entered Password is too weak.',
+  //         style: TextStyle(fontSize: 18, color: Colors.redAccent),
+  //       ),
+  //     ));
+  //   } else if (e.code == "email-already-in-use") {
+  //     print("Account already exists");
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //       backgroundColor: Colors.black,
+  //       content: Text(
+  //         'Account already exists.',
+  //         style: TextStyle(fontSize: 18, color: Colors.redAccent),
+  //       ),
+  //     ));
+  //   }
+
+  //   // notifylisteners
+  // }
+
+  // catch (e) {
+  //   print('Error Sign Up : $e');
+  // }
 }

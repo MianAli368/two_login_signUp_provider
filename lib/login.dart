@@ -168,7 +168,31 @@ void userLogin(String email, String password, context) async {
       Navigator.push(context,
           MaterialPageRoute(builder: ((context) => const Dashboard())));
     }
-  } catch (e) {
-    print('Error : $e');
+  } on FirebaseAuthException catch (e) {
+    // print(e);
+    if (e.code == "user-not-found") {
+      print("No User Found for that Email.");
+      //  print("Wrong Password Provided by User");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.black,
+          content: Text(
+            "No User Found for a this Email",
+            style: TextStyle(fontSize: 18.0, color: Colors.redAccent),
+          ),
+        ),
+      );
+    } else if (e.code == "wrong-password") {
+      print('Wrong Password Provided');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.black,
+          content: Text(
+            "Wrong Password Provided",
+            style: TextStyle(fontSize: 18.0, color: Colors.redAccent),
+          ),
+        ),
+      );
+    }
   }
 }
