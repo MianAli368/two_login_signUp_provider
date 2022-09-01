@@ -174,7 +174,7 @@ void userLogin(String email, String password, context) async {
       print("No User Found for that Email.");
       //  print("Wrong Password Provided by User");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Colors.black,
           content: Text(
             "No User Found for a this Email",
@@ -185,7 +185,7 @@ void userLogin(String email, String password, context) async {
     } else if (e.code == "wrong-password") {
       print('Wrong Password Provided');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Colors.black,
           content: Text(
             "Wrong Password Provided",

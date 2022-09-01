@@ -29,19 +29,6 @@ class ProviderState extends ChangeNotifier {
 
       return success = true;
     }
-    // }
-    // on FirebaseAuthException catch (e) {
-    //   if (e.code == "weak-password") {
-    //     print('Entered Password is too weak');
-    //   } else if (e.code == "email-already-in-use") {
-    //     print("Account already exists");
-    //   }
-    // }
-    // }
-    // else {
-    //   print("Password and Confirm Password does not matched");
-    // }
-
     return success;
   }
 
